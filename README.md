@@ -40,7 +40,8 @@ How to deploy this app:
    python3.11 -m venv .venv
    source .venv/bin/activate
    pip install fastapi uvicorn[standard] boto3 jinja2
-3. Set environment variable
+3. Clone app pada direktori ~/aws-net-validator
+4. Set environment variable
    ```bash
    cat > ~/aws-net-validator/.env <<'EOF'
    # === AWS temporary credentials dari Learner Lab ===
@@ -56,10 +57,10 @@ How to deploy this app:
    export WEB_SG_ID=sg-aaaaaaaa
    export DB_SG_ID=sg-bbbbbbbb
    EOF
-4. Load variabelnya pada shell
+5. Load variabelnya pada shell
    ```bash
    source ~/aws-net-validator/.env
-5. Reverse proxy via nginx agar akses 80
+6. Reverse proxy via nginx agar akses 80
    ```bash
    sudo dnf install -y nginx
    sudo tee /etc/nginx/conf.d/validator.conf >/dev/null <<'NG'
@@ -77,7 +78,7 @@ How to deploy this app:
    sudo nginx -t
    sudo systemctl enable --now nginx
 
-6. Run aplikasi
+7. Run aplikasi
    ```bash
    cd ~/aws-net-validator
    source .venv/bin/activate
