@@ -1,0 +1,18 @@
+body { font-family: ui-sans-serif, system-ui, Arial, sans-serif; background:#0b1220; color:#e5e7eb; }
+h1 { margin: 10px 0 6px; }
+.cloud { border:1px solid #334155; padding:16px; border-radius:12px; background:#0f172a; }
+.vpc { border:1px solid #22c55e; border-radius:10px; padding:16px; position:relative; }
+.vpc-title { position:absolute; top:-12px; left:16px; background:#0f172a; padding:2px 8px; color:#86efac; font-weight:bold; }
+.subnet { display:inline-block; width:45%; min-height:200px; margin:8px; padding:12px; border-radius:10px; vertical-align:top; }
+.public { background:#0b3a33; border:1px solid #10b981; }
+.private { background:#0b2540; border:1px solid #38bdf8; }
+.subnet-title { font-weight:600; margin-bottom:8px; }
+.sg { border:1px dashed #94a3b8; padding:10px; border-radius:10px; background:#111827; }
+.sg-title { font-weight:600; margin-bottom:6px; }
+.rule { margin:6px 0; }
+.routes { margin:10px 8px; padding:10px; background:#111827; border-radius:10px; border:1px dashed #94a3b8; }
+.overall { margin-top:12px; font-size:1.1rem; font-weight:700; }
+.ok { color:#22c55e; margin-left:6px; }
+.bad { color:#ef4444; margin-left:6px; }
+.msg { font-size:0.9rem; color:#cbd5e1; opacity:0.9; margin-bottom:6px; }
+footer { margin-top:10px; color:#94a3b8; }
