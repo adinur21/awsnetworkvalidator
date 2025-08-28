@@ -83,7 +83,6 @@ How to deploy this app:
    source .venv/bin/activate
    source .env
    uvicorn app.main:app --host 0.0.0.0 --port 8000
-7. 
 
 
 
