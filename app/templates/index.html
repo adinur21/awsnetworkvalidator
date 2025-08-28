@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AWS Network Validator</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <h1>AWS Network Validator</h1>
+  <p><b>Region:</b> {{ region }} | <b>VPC:</b> {{ vpc_id }} ({{ vpc_cidr }})</p>
+
+  <div class="cloud">
+    <div class="vpc">
+      <div class="vpc-title">VPC {{ vpc_id }}</div>
+
+      <div class="subnet public">
+        <div class="subnet-title">Public Subnet {{ public_subnet }}</div>
+        <div class="sg">
+          <div class="sg-title">Web SG {{ web_sg }}</div>
+          <div class="rule">HTTP:80 → Internet
+            <span class="{{ 'ok' if checks.web.ok else 'bad' }}">
+              {{ '✅' if checks.web.ok else '❌' }}
+            </span>
+          </div>
+          <div class="msg">{{ checks.web.msg }}</div>
+        </div>
+      </div>
+
+      <div class="subnet private">
+        <div class="subnet-title">Private Subnet {{ private_subnet }}</div>
+        <div class="sg">
+          <div class="sg-title">DB SG {{ db_sg }}</div>
+          <div class="rule">TCP:3306 ← Web SG
+            <span class="{{ 'ok' if checks.db.ok else 'bad' }}">
+              {{ '✅' if checks.db.ok else '❌' }}
+            </span>
+          </div>
+          <div class="msg">{{ checks.db.msg }}</div>
+        </div>
+      </div>
+
+      <div class="routes">
+        <div>Public RT 0.0.0.0/0 → IGW
+          <span class="{{ 'ok' if checks.pub.ok else 'bad' }}">{{ '✅' if checks.pub.ok else '❌' }}</span>
+        </div>
+        <div class="msg">{{ checks.pub.msg }}</div>
+
+        <div>Private RT no direct IGW
+          <span class="{{ 'ok' if checks.prv.ok else 'bad' }}">{{ '✅' if checks.prv.ok else '❌' }}</span>
+        </div>
+        <div class="msg">{{ checks.prv.msg }}</div>
+      </div>
+
+      <div class="overall">
+        Status Akhir:
+        <span class="{{ 'ok' if overall_ok else 'bad' }}">
+          {{ 'Semua konfigurasi benar ✅' if overall_ok else 'Masih ada yang salah ❌' }}
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <small>Diambil dari AWS API secara live menggunakan kredensial Learner Lab.</small>
+  </footer>
+</body>
+</html>
